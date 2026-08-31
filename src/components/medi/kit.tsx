@@ -193,7 +193,7 @@ export function StatCard({
       </div>
       <p className="mt-4 text-sm text-muted-foreground">{label}</p>
       <p className="font-display text-3xl font-bold tracking-tight">
-        <Counter value={value} prefix={prefix} suffix={suffix} />
+        <Counter value={value} prefix={prefix ?? ""} suffix={suffix ?? ""} />
       </p>
       <p className="mt-1 text-xs text-muted-foreground">{note}</p>
     </Glass>
