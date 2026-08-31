@@ -291,16 +291,18 @@ export type BedStatus = "Available" | "Occupied" | "Critical" | "Cleaning";
 export const WARDS = ["General Ward", "ICU", "Emergency", "Maternity", "Pediatric"] as const;
 
 export const BEDS = Array.from({ length: 40 }, (_, i) => {
-  const ward = WARDS[i % WARDS.length];
+  const ward = WARDS[i % WARDS.length]!;
   const statuses: BedStatus[] = ["Available", "Occupied", "Critical", "Cleaning"];
-  const status = statuses[(i * 3 + (i % 5)) % 4];
+  const status = statuses[(i * 3 + (i % 5)) % 4]!;
   return {
     id: `${ward.slice(0, 2).toUpperCase()}-${101 + i}`,
     ward,
     status,
-    patient: status === "Occupied" || status === "Critical" ? SEED_PATIENTS[i % 8].name : null,
+    patient:
+      status === "Occupied" || status === "Critical" ? SEED_PATIENTS[i % 8]!.name : null,
   };
 });
+
 
 export const MEDICINES = [
   {
